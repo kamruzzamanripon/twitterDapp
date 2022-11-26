@@ -1,19 +1,35 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { Input, Upload } from '@web3uikit/core';
+import React, { useState } from 'react';
 import './Settings.css';
 
 const Settings = () => {
+   const [profileFile, setProfileFile] = useState();
+   const [bannerFile, setBannerFile] = useState();
+   const [name, setName] = useState();
+   const [bio, setBio] = useState();
+
+   const bannerHandler = (event)=>{
+      if(event != null){
+         setBannerFile(event)
+      }
+   }
+
+   const profileHandler = (event)=>{
+      if(event != null){
+         setProfileFile(event)
+      }
+   }
     return (
         <>
-         <Link to="/">
-            <div>Home</div>
-         </Link> 
-         <Link to="/profile">
-            <div>Profile</div>
-         </Link>
-         <Link to="/settings">
-            <div>Settings</div>
-         </Link>  
+         <div className="settingsPage">
+            <Input label="Name" name="NameChange" width="100%" labelBgColor='#141d26' onChange={(e)=>setName(e.target.value)} />
+            <Input label="Bio" name="BioChange" width="100%" labelBgColor='#141d26' onChange={(e)=>setBio(e.target.value)} />
+            <div className="pfp">Change Profile Image</div>
+            <Upload onChange={profileHandler} />
+            <div className="pfp">change Banner Image</div>
+            <Upload onChange={bannerHandler} />
+            <div className="save">Save</div>
+         </div>
         </>
     );
 };
