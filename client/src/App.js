@@ -192,7 +192,7 @@ function App() {
           {
           loading ?
           <Loading size={50} spinnerColor="green" /> :
-          <Button onClick={null} size="xl" text='login with Metamask' theme='primary' icon={<Metamask />} />
+          <Button onClick={connectWallet} size="xl" text='login with Metamask' theme='primary' icon={<Metamask />} />
           }
          
         </div>

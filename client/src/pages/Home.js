@@ -22,7 +22,8 @@ const Home = () => {
    async function storeFile(){
       const client = new Web3Storage({token: Web3StorageApi});
       const rootCid = await client.put(selectedFile);
-      ipfsUploadedUrl = `htttps://${rootCid}.ipfs.dweb.link/${selectedFile[0].name}`
+      //ipfsUploadedUrl = `https://${rootCid}.ipfs.dweb.link/${selectedFile[0].name}`
+      ipfsUploadedUrl = `https://${rootCid}.ipfs.w3s.link/${selectedFile[0].name}`
    }
 
    const onImageClick = ()=>{
@@ -88,6 +89,7 @@ const Home = () => {
     return (
         <>
             <div className="mainContent">
+               {/* Tweet text and image upload field */}
                <div className="profileTweet">
                   <div className="tweetSection">
                      <Avatar isRounded image={userImage} theme="image" size={60} />
@@ -114,6 +116,7 @@ const Home = () => {
                      <div className="tweet" onClick={addTweet}> {uploading ? <Loading /> : 'Tweet'} </div>
                   </div>   
                </div>
+               {/* End Tweet text and image upload field */}
 
                {/* Feed Section */}
                <TweetInFeed profile={false} reload={uploading} />

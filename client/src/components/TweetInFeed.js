@@ -5,7 +5,6 @@ import React, { useEffect, useState } from 'react';
 import Web3Modal from 'web3modal';
 import Twitter from '../abi/Twitter.json';
 import { TwitterContractAddress } from '../config';
-import { defaultImgs } from '../defaultImgs';
 import './TweetInFeed.css';
 
 
@@ -15,7 +14,7 @@ const TweetInFeed = (props) => {
     const [tweets, setTweets] = useState([]);
     const [loadingState, setLoadingState] = useState('not-loaded');
     const notification = useNotification();
-    console.log("only user", onlyUser)
+    console.log("only user tweets", tweets)
     useEffect(()=>{
         if(onlyUser){
             loadMyTweets();
@@ -67,7 +66,7 @@ const TweetInFeed = (props) => {
             const date = new Date(unixTime * 1000);
             const tweetDate = date.toLocaleDateString("fr-CH");
             let getUserDetail = await contract.getUser(tweet.tweeter)
-
+            console.log("getUserDetail", getUserDetail['profileBanner']);
             let item = {
                 tweeter: tweet.tweeter,
                 id: tweet.id,
@@ -123,7 +122,7 @@ const TweetInFeed = (props) => {
         <>
             {
                 tweets.map((tweet, i)=>(
-                    <div className="feedTweet">
+                    <div className="feedTweet" key={i}>
                         <Avatar isRounded image={tweet.userImage} theme="image" size={60} />
                         <div className="completeTweet">
                             <div className="who">
@@ -133,7 +132,7 @@ const TweetInFeed = (props) => {
                             <div className="tweetContent">
                                 {tweet.tweetText}
                                 {tweet.tweetImg != '' && (
-                                    <img src={defaultImgs[1]} className="tweetImg" />
+                                    <img src={tweet.tweetImg} className="tweetImg" />
                                 )}
                                 
                             </div>

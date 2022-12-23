@@ -1,11 +1,11 @@
 import { Input, Loading, Upload, useNotification } from '@web3uikit/core';
+import { ethers } from 'ethers';
 import React, { useEffect, useState } from 'react';
 import { Web3Storage } from 'web3.storage';
 import Web3Modal from 'web3modal';
 import TwitterAbi from '../abi/Twitter.json';
 import { TwitterContractAddress, Web3StorageApi } from '../config';
 import './Settings.css';
-import { ethers } from 'ethers';
 
 
 const Settings = () => {
@@ -27,7 +27,8 @@ const Settings = () => {
    async function storeFile(selectedFile){
       const client = new Web3Storage({token: Web3StorageApi});
       const rootCid = await client.put(selectedFile);
-      let ipfsUploadedUrl = `htttps://${rootCid}.ipfs.dweb.link/${selectedFile[0].name}`;
+      //let ipfsUploadedUrl = `https://${rootCid}.ipfs.dweb.link/${selectedFile[0].name}`;
+      let ipfsUploadedUrl = `https://${rootCid}.ipfs.w3s.link/${selectedFile[0].name}`
       return ipfsUploadedUrl;
    }
 
