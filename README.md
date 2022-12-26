@@ -14,7 +14,7 @@
 
 ## Segging Page
 
-![This is a alt text.](/client/public/screenshort/settting.jpg)
+![This is a alt text.](/client/public/screenshort/setting.jpg)
 
 ## Install and Run
 
